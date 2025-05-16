@@ -1,0 +1,9 @@
+{
+    "name": "ChumuAddons",
+    "author": "nkze",
+    "entry": "index.js",
+    "version": "1.0.0",
+    "description": "feline felony", 
+    "requires": ["Vigilance", "BloomCore", "tska"]
+  }
+  
