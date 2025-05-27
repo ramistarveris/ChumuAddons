@@ -1,0 +1,97 @@
+
+[general]
+	test = true
+
+	[general.custom_chat]
+		chat_channel = 0
+		custom_message = "test"
+
+	[general.hud]
+		legion_counter = true
+
+	[general.notifications]
+		autopet_display = true
+
+[dungeons]
+
+	[dungeons.boss]
+		fire_freeze_notifier = false
+
+	[dungeons.crypt_reminder]
+		send_missing_crypts = true
+		crypt_reminder = true
+		crypt_done = true
+		reminder_interval = 15
+		missing_crypts_title = true
+		announce_crypts = true
+		send_crypt_done = true
+
+	[dungeons.dedicated_to_each_floor]
+		livid_vuln_timer = false
+
+	[dungeons.leap]
+		leap_announce = true
+		hide_leap_messages = 0
+
+	[dungeons.mimic]
+		send_mimic_dead_message = true
+		hightlight_mimic_chest = true
+
+	[dungeons.misc]
+		bat_dead_title = true
+
+[dungeon]
+
+	[dungeon.mimic]
+		send_mimic_dead_message = false
+
+["f7/m7"]
+
+	["f7/m7".p3]
+		terminal_class_label = false
+		label_class_distance = 14
+		terminal_number_label = false
+
+[undefined]
+	label_class_distance = 14
+
+[chat_commands]
+	white_list = false
+	black_list = false
+	prefix = "!"
+	blacklist = ""
+	whitelist = ""
+	toggle_chat_commands = true
+
+	[chat_commands.general]
+		help = true
+		ping = true
+		tps = true
+		coords = true
+
+	[chat_commands.party_-_joininstance]
+		joininstance_shortcuts = true
+
+	[chat_commands.party]
+		inv = true
+		requeue = true
+		dt = true
+		cdt = true
+		kick = true
+		pt = true
+		ptme = true
+		allinv = true
+		pm = true
+		db = true
+		tr = true
+		warp = true
+
+	[chat_commands.misc]
+		watchdogreport = true
+		iq = true
+		dice = true
+		rnd = true
+		deux = true
+		math = true
+		uuid = true
+

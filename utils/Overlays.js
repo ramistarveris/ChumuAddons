@@ -76,4 +76,4 @@ export class ChumuOverlay {
 
 register("command", () => {
     editGui.open();
-}).setName("chumuhud").setAliases("cahud");
+}).setName("chumugui").setAliases("cagui");

@@ -1,4 +1,7 @@
-import config from "./config";
+import "./config";
+// ChatCommands
+import "./features/ChatCommands/chatCommands";
+import "./features/ChatCommands/index";
 
 // General
 import "./features/General/customMessage";
@@ -10,13 +13,18 @@ import "./features/Dungeons/cryptReminder";
 import "./features/Dungeons/leapAnnouce";
 import "./features/Dungeons/mimic";
 import "./features/Dungeons/batDead";
-    import "./features/Dungeons/F7/terminalLabel";
+import "./features/Dungeons/fireFreezeNotifier";
+
+// F7
+import "./features/Dungeons/F7/terminalLabel";
 
 // Need to load once
-import "./utils/Utils";
+import "./utils/Utils"
 
-ChatLib.chat("§9[§bChumu§9]§e Module Loaded!");
+import { YELLOW } from "./utils/Constants";
+import { PREFIX } from "./utils/Utils";
+import { modMsg } from "./utils/Functions";
 
-register("command", () => {
-    config.openGUI();
-}).setName("chumuaddons").setAliases("ca");
+register("gameLoad", () => {
+    ChatLib.chat(`${PREFIX} ${YELLOW}Module Loaded!`)
+});

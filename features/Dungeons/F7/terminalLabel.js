@@ -1,5 +1,5 @@
 import config from "../../../config";
-import { Data } from "../../utils/data";
+import { Data } from "../../../utils/Functions";
 import { Render3D } from "../../../../tska/rendering/Render3D";
 
 const phases = {

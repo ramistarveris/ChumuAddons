@@ -1,4 +1,15 @@
 import config from "../config";
+import { LocalStore } from "../../tska/storage/LocalStore";
+import { PREFIX } from "./Utils";
+
+// party chat sender
+export function partyMsg(text) {
+    ChatLib.command(`party chat ${text}`);
+}
+// mod message sender
+export function modMsg(text) {
+    ChatLib.chat(`${PREFIX} ${text}`);
+}
 
 // HUD関連
 export function initializeGuiSettings() {
@@ -81,3 +92,37 @@ export function setTimeout(callback, delay, ...args) {
 export function cancelTimeout(timer) {
     timer.cancel(true);
 }
+
+// GoldorSection
+export const Data = new LocalStore("ChumuAddons", {
+    goldorsection: 0,
+}, "data.json");
+
+export function stripRank(name) {
+    return name.replace(/\[.+?] /, "");
+}
+
+register("chat", (message) =>
+  [
+    {
+      predicate: msg => msg.startsWith("[BOSS] Storm: I should have known that I stood no chance."),
+      action: () => Data.goldorsection = 1
+    },
+    {
+      predicate: msg => (msg.includes("(7/7)") || msg.includes("(8/8)")) && !msg.includes(":"),
+      action: () => Data.goldorsection += 1
+    },
+    {
+      predicate: msg => msg === "The Core entrance is opening!",
+      action: () => Data.goldorsection = 5
+    },
+    {
+      predicate: msg => msg === "[BOSS] Necron: You went further than any human before, congratulations.",
+      action: () => Data.goldorsection = 0
+    }
+  ].find(({ predicate }) => predicate(message))?.action()
+).setCriteria("${message}");
+
+register("worldLoad", () => {
+    Data.goldorsection = 0;
+});
