@@ -1,4 +1,6 @@
 import "./config";
+import "./debug";
+
 // ChatCommands
 import "./features/ChatCommands/chatCommands";
 import "./features/ChatCommands/index";
@@ -17,6 +19,12 @@ import "./features/Dungeons/fireFreezeNotifier";
 
 // F7
 import "./features/Dungeons/F7/terminalLabel";
+
+// Mining
+import "./features/mining/isOldServer"
+
+// Misc 
+import "./features/Misc/shattapWatcher";
 
 // Need to load once
 import "./utils/Utils"

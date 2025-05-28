@@ -208,8 +208,16 @@ class Config {
   })
   termLabelClassDistance = 14;
 
+  // ===== Mining =====
+  @SwitchProperty({
+    name: 'Is old Server?',
+    description: 'You can check how many days have passed since this server was created.',
+    category: 'Mining',
+  })
+  isOldServer = false;
 
   // Misc
+
   @SwitchProperty({
     name: 'Bat Dead Title',
     description: 'Display Bat Dead when bat dead.',
@@ -217,6 +225,14 @@ class Config {
     subcategory: 'Misc'
   })
   batDead = false;
+
+  /* ===== Misc ===== */
+  @SwitchProperty({
+    name: 'Shattap Watcher',
+    description: 'Disable watcher music only',
+    category: 'Misc'
+  })
+  shattapWatcher = false;
   
   /* ===== HUD ===== */
   @ButtonProperty({

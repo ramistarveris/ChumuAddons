@@ -1,11 +1,13 @@
 import config from "../config";
-import { saveGuiSettings, loadGuiSettings, setTimeout } from "../utils/Functions";
+import { saveGuiSettings, loadGuiSettings } from "../utils/Functions";
 import { registerWhen } from "../utils/Utils";
-import { YELLOW, BOLD } from "../utils/Constants";
 
 let guiSettings = loadGuiSettings();
 let editGui = new Gui();
 let overlays = [];
+let dragging = null;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
 
 export class OverlayTextLine {
     constructor(message) {
@@ -50,6 +52,15 @@ export class ChumuOverlay {
         this.setting = setting;
         this.type = type;
         this.locName = locName;
+
+        if (!guiSettings[locName]) {
+            guiSettings[locName] = {
+                x: 50,
+                y: 100,
+                s: 1
+            };
+        }
+
         this.scale = parseFloat(guiSettings[locName]["s"]);
         this.X = parseInt(guiSettings[locName]["x"]);
         this.Y = parseInt(guiSettings[locName]["y"]);
@@ -62,6 +73,14 @@ export class ChumuOverlay {
             this.textLines.forEach((line, i) => {
                 line.setX(this.X).setY(this.Y + i * 10).setScale(this.scale).draw();
             });
+
+            if (editGui.isOpen()) {
+                const posText = new Text(`X: ${this.X}, Y: ${this.Y}, S: ${this.scale.toFixed(1)}`)
+                    .setX(this.X)
+                    .setY(this.Y - 10)
+                    .setScale(1).setShadow(true);
+                posText.draw();
+            }
         }), () => config[this.setting]);
     }
 
@@ -72,8 +91,48 @@ export class ChumuOverlay {
     openGui() {
         editGui.open();
     }
+
+    isInOverlay(x, y) {
+        return x >= this.X && x <= this.X + 100 && y >= this.Y && y <= this.Y + 20;
+    }
 }
+
+editGui.registerClicked((x, y, btn) => {
+    for (let overlay of overlays) {
+        if (overlay.isInOverlay(x, y)) {
+            dragging = overlay;
+            dragOffsetX = x - overlay.X;
+            dragOffsetY = y - overlay.Y;
+            break;
+        }
+    }
+});
+
+editGui.registerMouseDragged((x, y) => {
+    if (dragging) {
+        dragging.X = x - dragOffsetX;
+        dragging.Y = y - dragOffsetY;
+        guiSettings[dragging.locName]["x"] = dragging.X;
+        guiSettings[dragging.locName]["y"] = dragging.Y;
+    }
+});
+
+editGui.registerMouseReleased(() => {
+    dragging = null;
+    saveGuiSettings(guiSettings);
+});
+
+editGui.registerScrolled((x, y, delta) => {
+    overlays.forEach(overlay => {
+        if (overlay.isInOverlay(x, y)) {
+            if (delta === 1 && overlay.scale < 10) overlay.scale += 0.1;
+            if (delta === -1 && overlay.scale > 0.2) overlay.scale -= 0.1;
+            overlay.scale = parseFloat(overlay.scale.toFixed(1));
+            guiSettings[overlay.locName]["s"] = overlay.scale;
+        }
+    });
+});
 
 register("command", () => {
     editGui.open();
-}).setName("chumugui").setAliases("cagui");
+}).setName("cagui");

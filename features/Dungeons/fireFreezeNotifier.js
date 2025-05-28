@@ -45,9 +45,3 @@ registerWhen(register("step", () => {
 
     overlay.setLines([line]);
 }).setFps(10), () => config.fireFreezeNotifier);
-
-
-register("renderOverlay", () => {
-    const test = new OverlayTextLine("&aHere is Notifier");
-    test.setX(50).setY(100).setScale(1).draw();
-}); 

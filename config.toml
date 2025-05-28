@@ -19,7 +19,7 @@
 
 	[dungeons.crypt_reminder]
 		send_missing_crypts = true
-		crypt_reminder = true
+		crypt_reminder = false
 		crypt_done = true
 		reminder_interval = 15
 		missing_crypts_title = true
@@ -39,6 +39,9 @@
 
 	[dungeons.misc]
 		bat_dead_title = true
+
+[mining]
+	"is_old_server?" = false
 
 [dungeon]
 
@@ -94,4 +97,7 @@
 		deux = true
 		math = true
 		uuid = true
+
+[misc]
+	shattap_watcher = true
 

@@ -96,6 +96,7 @@ export function cancelTimeout(timer) {
 // GoldorSection
 export const Data = new LocalStore("ChumuAddons", {
     goldorsection: 0,
+    isInDungeon: false,
 }, "data.json");
 
 export function stripRank(name) {
