@@ -21,7 +21,7 @@ import "./features/Dungeons/shadowAssassin";
 import "./features/Dungeons/F7/terminalLabel";
 
 // Mining
-import "./features/mining/isOldServer"
+// import "./features/mining/isOldServer"
 
 // Misc 
 import "./features/Misc/shattapWatcher";
