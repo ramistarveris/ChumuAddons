@@ -1,6 +1,9 @@
 
 [general]
 	test = true
+	autopet_display = false
+	legion_counter = false
+	test_overlay = true
 
 	[general.custom_chat]
 		chat_channel = 0
@@ -12,14 +15,19 @@
 	[general.notifications]
 		autopet_display = true
 
+[notification]
+	party_finder_notifier = true
+
 [dungeons]
+	shadow_assassin_jamping = false
+	bat_dead_title = false
 
 	[dungeons.boss]
 		fire_freeze_notifier = false
 
 	[dungeons.crypt_reminder]
 		send_missing_crypts = true
-		crypt_reminder = false
+		crypt_reminder = true
 		crypt_done = true
 		reminder_interval = 15
 		missing_crypts_title = true
@@ -36,6 +44,9 @@
 	[dungeons.mimic]
 		send_mimic_dead_message = true
 		hightlight_mimic_chest = true
+		"&denable_esp" = false
+		mimic_chest_color = "#ff0000"
+		mimic_chest_highlight = false
 
 	[dungeons.misc]
 		bat_dead_title = true
@@ -47,13 +58,19 @@
 
 	[dungeon.mimic]
 		send_mimic_dead_message = false
+		"&denable_esp" = false
+		mimic_chest_color = "#ff0000"
+		mimic_chest_highlight = false
 
 ["f7/m7"]
 
 	["f7/m7".p3]
-		terminal_class_label = false
+		terminal_class_label = true
 		label_class_distance = 14
-		terminal_number_label = false
+		display_class_distance = 14
+		display_terminal_number = false
+		display_terminal_class = false
+		terminal_number_label = true
 
 [undefined]
 	label_class_distance = 14
@@ -99,5 +116,5 @@
 		uuid = true
 
 [misc]
-	shattap_watcher = true
+	shattap_watcher = false
 

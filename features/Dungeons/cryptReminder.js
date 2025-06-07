@@ -1,9 +1,11 @@
+import config from "../../config";
 import { registerWhen } from "../../utils/Utils";
 import { DARK_AQUA } from "../../utils/Constants";
+import { isInBoss } from "../../utils/Dungeons";
+import { partyMsg, modMsg } from "../../utils/Functions";
+
 import { Render2D } from "../../../tska/rendering/Render2D";
 import Dungeon from "../../../BloomCore/dungeons/Dungeon";
-import config from "../../config";
-import { partyMsg, modMsg } from "../../utils/Functions";
 
 let lastReminderTime = 0;
 let cryptDoneAnnounced = false;
@@ -14,9 +16,7 @@ registerWhen(register("step", () => {
     if (!config.cryptReminder) return;
     if (!Dungeon.inDungeon) return;
     if (!config.cryptReminderInterval) return;
-
-    const inBoss = Dungeon.bossEntry && Dungeon.seconds >= (Dungeon.bossEntry - Dungeon.runStarted) / 1000;
-    if (inBoss) return;
+    if (isInBoss()) return;
 
     const cryptsFound = Dungeon.crypts;
     const dungeonTime = Dungeon.seconds;
@@ -42,11 +42,10 @@ registerWhen(register("step", () => {
 
 // Crypt Done
 registerWhen(register("step", () => {
-    if (!config.cryptReminder) return;
     if (!config.cryptDoneTitle) return;
     if (!Dungeon.inDungeon) return;
     if (cryptDoneAnnounced) return;
-
+    if (isInBoss()) return;
     if (Dungeon.crypts >= 5) {
         cryptDoneAnnounced = true;
         Render2D.showTitle(`&cCrypt Done`, null, 2000);
@@ -62,27 +61,18 @@ registerWhen(register("step", () => {
 registerWhen(register("step", () => {
     if (!Dungeon.inDungeon) return;
 
-    const inBossNow = Dungeon.bossEntry && Dungeon.seconds >= (Dungeon.bossEntry - Dungeon.runStarted) / 1000;
+    const nowInBoss = isInBoss();
 
-    if (inBossNow && !bossEntered) {
+    if (nowInBoss && !bossEntered) {
         bossEntered = true;
-
         lastReminderTime = 0;
         cryptDoneAnnounced = false;
-        modMsg(`${DARK_AQUA}Crypt Reminder -> Reset on boss entry`);
     }
 
-    if (!inBossNow) {
+    if (!nowInBoss) {
         bossEntered = false;
     }
 }).setFps(10), () => true);
 
-register("worldLoad", () => {
-    setTimeout(() => {
-        if (Dungeon.inDungeon) {
-            cryptDoneAnnounced = false;
-            bossEntered = false;
-            lastReminderTime = 0;
-        }
-    }, 1000);
-});
+// TODO:
+// Add selecter Crypt Remider toggle Interval/OnesOnly

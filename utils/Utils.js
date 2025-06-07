@@ -3,7 +3,6 @@ export const PREFIX = `§9[§bChumu§9]`;
 export const moduleVersion = JSON.parse(FileLib.read("ChumuAddons", "metadata.json")).version;
 export const moduleAuthor = JSON.parse(FileLib.read("ChumuAddons", "metadata.json")).author;
 export const configHeader = `§9[§bChumu§9] &ev${moduleVersion} \nMade by ${moduleAuthor}`;
-import Dungeon from "../../BloomCore/dungeons/Dungeon";
 
 // Chat Message Stuff
 const messageColors = { info: `&e`, success: `&a`, error: `&c`, warning: `&6` };
@@ -62,4 +61,19 @@ export function isPlayerInArea(x1, x2, y1, y2, z1, z2, entity = Player) {
   );
 }
 
-export function isInBoss() { return Dungeon.bossEntry }
+const romanHash = { I: 1, V: 5, X: 10 };
+export function romanToInt(s) {
+    let total = 0;
+    for (let i = 0; i < s.length; i++) {
+        const current = romanHash[s[i]];
+        const next = romanHash[s[i + 1]];
+
+        if (next > current) {
+            total += next - current;
+            i++;
+        } else {
+            total += current;
+        }
+    }
+    return total;
+}

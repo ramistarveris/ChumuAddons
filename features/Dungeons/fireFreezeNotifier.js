@@ -45,3 +45,6 @@ registerWhen(register("step", () => {
 
     overlay.setLines([line]);
 }).setFps(10), () => config.fireFreezeNotifier);
+
+// TODO:
+// Fix doesnt work hud

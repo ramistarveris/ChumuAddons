@@ -13,7 +13,6 @@ let matched = false;
 let wasMatched = false;
 let dayText = "";
 
-// HUD オーバーレイ
 let dayOverlay = new ChumuOverlay("OldServerOverlay", "isOldServer", "render", "OldServerLoc");
 let dayOverlayText = new OverlayTextLine("");
 
@@ -52,7 +51,6 @@ register("step", () => {
     }
 }).setFps(2);
 
-// 表示制御
 registerWhen(
     register("renderOverlay", () => {
         dayOverlay.render();
@@ -60,7 +58,6 @@ registerWhen(
     () => config.isOldServer && matched
 );
 
-// ユーティリティ関数
 function sanitizeText(text) {
     return text
         .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "")
