@@ -142,7 +142,7 @@ class Config {
     })
     mimicChestHighlight = false;
     @SwitchProperty({
-        name: "&dEnable ESP",
+        name: "&dEnable ESP Mimic Chest",
         description: "Mimic Chest can be highlighted through walls",
         category: "Dungeons",
         subcategory: "Mimic"
@@ -217,6 +217,22 @@ class Config {
         max: 15
     })
     displayClassDistance = 14;
+
+    // > Wither Box
+    @SwitchProperty({
+        name: 'Wither Box',
+        description: 'Highlight Boss Witherlords on Floor 7',
+        category: 'F7\/M7',
+        subcategory: 'General'
+    })
+    witherBox = false;
+    @SwitchProperty({
+        name: '&dEnable ESP Wither Box',
+        description: 'Enable Wither Box ESP',  
+        category: 'F7\/M7',
+        subcategory: 'General'
+    })
+    witherBoxESP = false;
 
     /* ===== Mining ===== */
     @SwitchProperty({
@@ -458,8 +474,9 @@ class Config {
         this.addDependency("Send Missing Crypts", "Crypt Reminder");
         this.addDependency("Missing Crypts Title", "Crypt Reminder");
 
-        this.addDependency("&dEnable ESP", "Mimic Chest Highlight");
+        this.addDependency("&dEnable ESP Mimic Chest", "Mimic Chest Highlight");
         this.addDependency("Mimic Chest Color", "Mimic Chest Highlight");
+        this.addDependency("&dEnable ESP Wither Box", "Wither Box");
     }
 }
 

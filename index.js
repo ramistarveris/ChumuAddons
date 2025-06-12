@@ -19,6 +19,7 @@ import "./features/Dungeons/shadowAssassin";
 
 // F7
 import "./features/Dungeons/F7/terminalLabel";
+import "./features/Dungeons/F7/witherBox";
 
 // Mining
 // import "./features/mining/isOldServer"

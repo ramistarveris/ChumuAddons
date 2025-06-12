@@ -77,3 +77,113 @@ export function romanToInt(s) {
     }
     return total;
 }
+
+export function drawBox(x, y, z, w, h, red, green, blue, alpha, phase) {
+    Tessellator.pushMatrix();
+    GL11.glLineWidth(2.0);
+    GlStateManager.func_179129_p(); // disableCullFace
+    GlStateManager.func_179147_l(); // enableBlend
+    GlStateManager.func_179106_n()  // disableFog
+    GlStateManager.func_179112_b(770, 771); // blendFunc
+    GlStateManager.func_179090_x(); // disableTexture2D
+
+    if (phase) {
+        GlStateManager.func_179097_i() // disableDepth
+    }
+
+    const locations = [
+        [[0, 0, 0], [w, 0, 0]],
+        [[0, 0, 0], [0, 0, w]],
+        [[w, 0, w], [w, 0, 0]],
+        [[w, 0, w], [0, 0, w]],
+        [[0, h, 0], [w, h, 0]],
+        [[0, h, 0], [0, h, w]],
+        [[w, h, w], [w, h, 0]],
+        [[w, h, w], [0, h, w]],
+        [[0, 0, 0], [0, h, 0]],
+        [[w, 0, 0], [w, h, 0]],
+        [[0, 0, w], [0, h, w]],
+        [[w, 0, w], [w, h, w]],
+    ];
+
+    locations.forEach((loc) => {
+        Tessellator.begin(3).colorize(red, green, blue, alpha);
+        Tessellator.pos(x + loc[0][0] - w / 2, y + loc[0][1], z + loc[0][2] - w / 2).tex(0, 0);
+        Tessellator.pos(x + loc[1][0] - w / 2, y + loc[1][1], z + loc[1][2] - w / 2).tex(0, 0);
+        Tessellator.draw();
+    });
+
+    GlStateManager.func_179089_o(); // enableCull
+    GlStateManager.func_179084_k(); // disableBlend
+    GlStateManager.func_179127_m()  // enableFog
+    GlStateManager.func_179098_w(); // enableTexture2D
+    if (phase) {
+        GlStateManager.func_179126_j(); // enableDepth
+    }
+
+    Tessellator.popMatrix();
+}
+
+export function drawInnerBox(x, y, z, w, h, r, g, b, a, phase) {
+    Tessellator.pushMatrix();
+
+    GL11.glDisable(GL11.GL_CULL_FACE);
+    GL11.glEnable(GL11.GL_BLEND);
+    GL11.glDisable(GL11.GL_TEXTURE_2D);
+    GL11.glDisable(GL11.GL_LIGHTING);
+    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+    if (phase) GL11.glDisable(GL11.GL_DEPTH_TEST);
+
+    const hw = w / 2;
+
+    Tessellator.begin(GL11.GL_QUADS);
+    Tessellator.colorize(r, g, b, a);
+
+    // bottom
+    Tessellator.pos(x - hw, y, z - hw);
+    Tessellator.pos(x + hw, y, z - hw);
+    Tessellator.pos(x + hw, y, z + hw);
+    Tessellator.pos(x - hw, y, z + hw);
+
+    // top
+    Tessellator.pos(x - hw, y + h, z - hw);
+    Tessellator.pos(x + hw, y + h, z - hw);
+    Tessellator.pos(x + hw, y + h, z + hw);
+    Tessellator.pos(x - hw, y + h, z + hw);
+
+    // north
+    Tessellator.pos(x - hw, y, z - hw);
+    Tessellator.pos(x + hw, y, z - hw);
+    Tessellator.pos(x + hw, y + h, z - hw);
+    Tessellator.pos(x - hw, y + h, z - hw);
+
+    // south
+    Tessellator.pos(x - hw, y, z + hw);
+    Tessellator.pos(x + hw, y, z + hw);
+    Tessellator.pos(x + hw, y + h, z + hw);
+    Tessellator.pos(x - hw, y + h, z + hw);
+
+    // east
+    Tessellator.pos(x + hw, y, z - hw);
+    Tessellator.pos(x + hw, y, z + hw);
+    Tessellator.pos(x + hw, y + h, z + hw);
+    Tessellator.pos(x + hw, y + h, z - hw);
+
+    // west
+    Tessellator.pos(x - hw, y, z - hw);
+    Tessellator.pos(x - hw, y, z + hw);
+    Tessellator.pos(x - hw, y + h, z + hw);
+    Tessellator.pos(x - hw, y + h, z - hw);
+
+    Tessellator.draw();
+
+    if (phase) GL11.glEnable(GL11.GL_DEPTH_TEST);
+
+    GL11.glEnable(GL11.GL_TEXTURE_2D);
+    GL11.glEnable(GL11.GL_CULL_FACE);
+    GL11.glDisable(GL11.GL_BLEND);
+    GL11.glEnable(GL11.GL_LIGHTING);
+
+    Tessellator.popMatrix();
+}
