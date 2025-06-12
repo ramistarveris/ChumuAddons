@@ -19,8 +19,8 @@ module.exports = {
     },
 
     ptme(player, args) {
-        if (!config.ptme) return;
-        ChatLib.command(`p transfer ${Player.getName()}`);
+    if (!config.ptme) return;
+        ChatLib.command(`p transfer ${player}`);
     },
 
     pm(player, args) {
