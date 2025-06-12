@@ -20,14 +20,14 @@
 
 [dungeons]
 	shadow_assassin_jamping = false
-	bat_dead_title = false
+	bat_dead_title = true
 
 	[dungeons.boss]
 		fire_freeze_notifier = false
 
 	[dungeons.crypt_reminder]
 		send_missing_crypts = true
-		crypt_reminder = true
+		crypt_reminder = false
 		crypt_done = true
 		reminder_interval = 15
 		missing_crypts_title = true
@@ -67,9 +67,10 @@
 	["f7/m7".p3]
 		terminal_class_label = true
 		label_class_distance = 14
-		display_class_distance = 14
-		display_terminal_number = false
-		display_terminal_class = false
+		display_class_distance = 15
+		display_terminal_number = true
+		display_terminal_class = true
+		display_device = false
 		terminal_number_label = true
 
 [undefined]

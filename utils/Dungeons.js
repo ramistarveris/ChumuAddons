@@ -1,6 +1,8 @@
 import Dungeon from "../../BloomCore/dungeons/Dungeon"
 import config from "../config"
-import { romanToInt } from "./Utils"
+import { AQUA, DARK_AQUA } from "./Constants";
+import { romanToInt } from "./Utils";
+import { modMsg } from "./Functions";
 
 export function isInDungeon() {
     try {
@@ -56,9 +58,12 @@ export const classColors = {
 
 // ===== F7 Functions =======
 //  - Phase
+// TODO: 
+// just make it
 
 //  - Goldor Phase
 let goldorPhase = 0;
+
 register("chat", (message) => {
     [
         {

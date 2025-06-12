@@ -31,7 +31,7 @@ class Config {
         category: "General"
     })
     openGUIEditor() {
-        ChatLib.command("cagui");
+        ChatLib.command("cagui", true);
     }
 
     @SwitchProperty({
@@ -194,15 +194,20 @@ class Config {
         subcategory: 'P3'
     })
     displayTermNumber = false;
-
     @SwitchProperty({
         name: "Display Terminal Class",
         description: 'Display each class name in front of terminal',
         category: 'F7\/M7',
         subcategory: 'P3'
     })
-    displayTermClass = false
-
+    displayTermClass = false;
+    @SwitchProperty({
+        name: "Display Device",
+        description: "Displays the location of the device",
+        category: 'F7\/M7',
+        subcategory: 'P3'
+    })
+    displayDevice = false;
     @SliderProperty({
         name: 'Display Class Distance',
         description: 'Distance at which class name is displayed',
