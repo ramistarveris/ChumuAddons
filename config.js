@@ -5,7 +5,8 @@ import {
     @TextProperty, 
     @SliderProperty, 
     @ButtonProperty, 
-    @SelectorProperty } from "Vigilance";
+    @SelectorProperty
+} from "Vigilance";
 
 @Vigilant("ChumuAddons", "§l§bChumu§9Addons", {
     getCategoryComparator: () => (a, b) => {
@@ -163,6 +164,70 @@ class Config {
         subcategory: 'Mimic'
     })
     mimicDead = false;
+    
+    // > Immunity Cooldown
+    @SwitchProperty({
+        name: 'Display Mask/Pet Activated',
+        description: 'Displayed on screen when Mask/Pet activated',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown'
+    })
+    displayMaskActive = false;
+    @SwitchProperty({
+        name: 'Send Mask/Pet Activated',
+        description: 'Send a party message when Mask/Pet is activated',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown'
+    })
+    sendMaskActive = false;
+    @SwitchProperty({
+        name: 'Display Mask/Pet Cooldown Announce',
+        description: 'Show Mask/Pet cooldown in chat',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown'
+    })
+    displayMaskCooldown = false;
+    @SelectorProperty({
+        name: 'Select Cooldown Announce Sound',
+        description: 'Sound played when Mask/Pet cooldown is announced',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown',
+        options: [
+            "none",
+            "Custom",
+            "note.pling",
+            "note.bass",
+            "note.bassattack",
+            "note.bd",
+            "note.harp",
+            "note.hat",
+            "note.snare",
+        ]
+    })
+    maskCooldownSound = 2;
+    @TextProperty({
+        name: 'Custom Cooldown Announce Sound',
+        description: 'Used if "Custom" is selected in Cooldown Announce Sound \nClick List of Sounds to specify sounds',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown',
+    })
+    CustomMaskCooldownSound = "random.anvil_land";
+    @ButtonProperty({
+        name: 'List of Sounds',
+        description: 'Click to print the list of sounds URL to chat.',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown'
+    })
+    openSoundList() {
+        ChatLib.chat("&bSound List:\nhttps://www.minecraftforum.net/forums/mapping-and-modding-java-edition/mapping-and-modding-tutorials/2213619-1-8-all-playsound-sound-arguments");
+    }
+    @SwitchProperty({
+        name: 'Mask/Pet Cooldown HUD',
+        description: 'Show Mask/Pet cooldown on HUD',
+        category: 'Dungeons',
+        subcategory: 'Immunity Cooldown'
+    })
+    displayMaskCooldownHUD = false;
 
     // each Floor
     // F3/M3
@@ -186,7 +251,7 @@ class Config {
     // F6/M6
 
     /* ===== F7/M7 ====== */
-    // terminal - labels (Credits: MeowAddons)
+    // > terminal - labels (Credits: MeowAddons)
     @SwitchProperty({
         name: 'Display Terminal Number',
         description: 'Displays the terminal number in front of the terminal',
@@ -221,7 +286,7 @@ class Config {
     // > Wither Box
     @SwitchProperty({
         name: 'Wither Box',
-        description: 'Highlight Boss Witherlords on Floor 7',
+        description: 'Highlight Boss Witherlords',
         category: 'F7\/M7',
         subcategory: 'General'
     })
@@ -237,7 +302,7 @@ class Config {
     /* ===== Mining ===== */
     @SwitchProperty({
         name: 'Is old Server?',
-        description: 'You can check how many days have passed since this server was created.',
+        description: 'You can check how many days have passed since this server was created',
         category: 'Mining',
     })
     isOldServer = false;
@@ -477,6 +542,10 @@ class Config {
         this.addDependency("&dEnable ESP Mimic Chest", "Mimic Chest Highlight");
         this.addDependency("Mimic Chest Color", "Mimic Chest Highlight");
         this.addDependency("&dEnable ESP Wither Box", "Wither Box");
+
+        this.addDependency("Select Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
+        this.addDependency("Custom Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
+        this.addDependency("List of Sounds", "Display Mask/Pet Cooldown Announce");
     }
 }
 

@@ -20,6 +20,7 @@ import "./features/Dungeons/shadowAssassin";
 // F7
 import "./features/Dungeons/F7/terminalLabel";
 import "./features/Dungeons/F7/witherBox";
+import "./features/Dungeons/F7/immunityCooldown";
 
 // Mining
 // import "./features/mining/isOldServer"
