@@ -5,6 +5,8 @@ import {
     @TextProperty, 
     @SliderProperty, 
     @ButtonProperty, 
+    @ColorProperty,
+    Color,
     @SelectorProperty
 } from "Vigilance";
 
@@ -50,6 +52,49 @@ class Config {
     legionCounter = false;
 
     /* ========= Dungeons ========== */
+    
+    // > Starred Mob
+    @SwitchProperty({
+        name: "Starred Mob Highlight",
+        description: "Highlights starred mobs in dungeons.\n",
+        category: "Dungeons",
+    })
+    starredMob = false;
+    // @SwitchProperty({
+    //     name: "Enable ESP Starred Mob",
+    //     description: "Starred Mob can be highlighted through walls",
+    //     category: "Dungeons",
+    // })
+    // starredMobESP = false;
+    @ColorProperty({
+        name: 'Starred Mob Highlight Color',
+        description: 'Pick up a color for the starred mob highlight.',
+        category: 'Dungeons',
+    })
+    starredMobColor = Color.BLUE;
+
+    @SwitchProperty({
+    name: "Key Highlight",
+    description: "Highlights the Wither&Blood Key in dungeons",
+    category: "Dungeons",
+    subcategory: "Key"
+    })
+    keyHighlight = false;
+    @ColorProperty({
+        name: "Wither Key Color",
+        description: "Color of the Wither Key highlight",
+        category: "Dungeons",
+        subcategory: "Key"
+    })
+    keyHighlightColorWither = Color.BLACK;
+    @ColorProperty({
+        name: "Blood Key Color",
+        description: "Color of the Blood Key highlight",
+        category: "Dungeons",
+        subcategory: "Key"
+    })
+    keyHighlightColorBlood = Color.RED;
+
     @SwitchProperty({
         name: 'Bat Dead Title',
         description: 'Display Bat Dead when bat dead.',
@@ -142,20 +187,14 @@ class Config {
         subcategory: "Mimic"
     })
     mimicChestHighlight = false;
-    @SwitchProperty({
-        name: "&dEnable ESP Mimic Chest",
-        description: "Mimic Chest can be highlighted through walls",
-        category: "Dungeons",
-        subcategory: "Mimic"
-    })
-    mimicChestESP = false;
-    @TextProperty({
+    @ColorProperty({
         name: "Mimic Chest Color",
-        description: "Color used for Mimic Chest ESP (You must reload to make changes)",
+        description: "Color used for Mimic Chest",
         category: "Dungeons",
         subcategory: "Mimic"
     })
-    mimicChestColor = "#ff0000";
+    mimicChestColor = Color.RED;
+
     // > Mimic Dead
     @SwitchProperty({
         name: 'Send Mimic Dead Message',
@@ -291,13 +330,6 @@ class Config {
         subcategory: 'General'
     })
     witherBox = false;
-    @SwitchProperty({
-        name: '&dEnable ESP Wither Box',
-        description: 'Enable Wither Box ESP',  
-        category: 'F7\/M7',
-        subcategory: 'General'
-    })
-    witherBoxESP = false;
 
     /* ===== Mining ===== */
     @SwitchProperty({
@@ -539,9 +571,9 @@ class Config {
         this.addDependency("Send Missing Crypts", "Crypt Reminder");
         this.addDependency("Missing Crypts Title", "Crypt Reminder");
 
-        this.addDependency("&dEnable ESP Mimic Chest", "Mimic Chest Highlight");
+        // this.addDependency("&dEnable ESP Mimic Chest", "Mimic Chest Highlight");
         this.addDependency("Mimic Chest Color", "Mimic Chest Highlight");
-        this.addDependency("&dEnable ESP Wither Box", "Wither Box");
+        // this.addDependency("&dEnable ESP Wither Box", "Wither Box");
 
         this.addDependency("Select Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
         this.addDependency("Custom Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");

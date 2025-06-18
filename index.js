@@ -16,11 +16,13 @@ import "./features/Dungeons/mimic";
 import "./features/Dungeons/batDead";
 // import "./features/Dungeons/fireFreezeNotifier";
 import "./features/Dungeons/shadowAssassin";
+import "./features/Dungeons/immunityCooldown";
+import "./features/Dungeons/starredMob";
+import "./features/Dungeons/key";
 
 // F7
 import "./features/Dungeons/F7/terminalLabel";
 import "./features/Dungeons/F7/witherBox";
-import "./features/Dungeons/F7/immunityCooldown";
 
 // Mining
 // import "./features/mining/isOldServer"
@@ -37,6 +39,8 @@ import "./utils/Utils"
 import { YELLOW } from "./utils/Constants";
 import { PREFIX } from "./utils/Utils";
 import { modMsg } from "./utils/Functions";
+
+global.illegalMode = false;
 
 register("gameLoad", () => {
     ChatLib.chat(`${PREFIX} ${YELLOW}Module Loaded!`)

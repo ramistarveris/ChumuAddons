@@ -78,6 +78,26 @@ export function romanToInt(s) {
     return total;
 }
 
+export function hexToRGBA(hex) {
+    if (!hex || typeof hex !== "string") return [1, 1, 1, 1];
+    if (hex.startsWith("#")) hex = hex.slice(1);
+
+    if (hex.length === 6) {
+        const r = parseInt(hex.substring(0, 2), 16) / 255;
+        const g = parseInt(hex.substring(2, 4), 16) / 255;
+        const b = parseInt(hex.substring(4, 6), 16) / 255;
+        return [r, g, b, 1.0];
+    } else if (hex.length === 8) {
+        const r = parseInt(hex.substring(0, 2), 16) / 255;
+        const g = parseInt(hex.substring(2, 4), 16) / 255;
+        const b = parseInt(hex.substring(4, 6), 16) / 255;
+        const a = parseInt(hex.substring(6, 8), 16) / 255;
+        return [r, g, b, a];
+    } else {
+        return [1, 1, 1, 1]; 
+    }
+}
+
 export function drawBox(x, y, z, w, h, red, green, blue, alpha, phase) {
     Tessellator.pushMatrix();
     GL11.glLineWidth(2.0);

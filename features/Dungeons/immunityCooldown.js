@@ -1,7 +1,7 @@
-import config from "../../../config";
-import { BOLD, DARK_AQUA, GREEN, LIGHT_PURPLE, RED, YELLOW } from "../../../utils/Constants";
-import { partyMsg, modMsg } from "../../../utils/Functions";
-import { Render2D } from "../../../../tska/rendering/Render2D";
+import config from "../../config";
+import { BOLD, DARK_AQUA, GREEN, LIGHT_PURPLE, RED, YELLOW } from "../../utils/Constants";
+import { partyMsg, modMsg } from "../../utils/Functions";
+import { Render2D } from "../../../tska/rendering/Render2D";
 
 function playCooldownSound() {
     if (!config.displayMaskCooldown) return;

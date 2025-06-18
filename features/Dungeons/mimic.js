@@ -56,15 +56,15 @@ register("renderWorld", () => {
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
-    const throughWalls = config.mimicChestESP; // toggle ESP
+    const ESP = global.illegalMode; // toggle ESP
 
     trapChests.forEach(pos => {
         const [x, y, z] = pos.split(",").map(Number);
         const block = World.getBlockAt(x, y, z);
         if (!block) return;
 
-        Render3D.outlineBlock(block, r, g, b, 255, throughWalls);
-        Render3D.filledBlock(block, r, g, b, 60, throughWalls);
+        Render3D.outlineBlock(block, r, g, b, 255, ESP);
+        Render3D.filledBlock(block, r, g, b, 60, ESP);
     });
 });
 
