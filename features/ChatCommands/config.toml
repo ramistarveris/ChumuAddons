@@ -1,34 +1,13 @@
 
-[chat_commands]
-	white_list = false
-	black_list = false
-	prefix = "!"
-	blacklist = ""
-	whitelist = ""
-	toggle_chat_commands = false
+[chatcommand]
+	enable_chat_commands = true
+	chat_commands_prefix = "!"
 
-	[chat_commands.general]
-		help = true
-		ping = true
-		tps = true
-		coords = true
+	[chatcommand.blacklist]
+		enable_blacklist = false
+		blacklist = ""
 
-	[chat_commands.party_-_joininstance]
-		joininstance_shortcuts = true
-
-	[chat_commands.party]
-		inv = true
-		dt = true
-		requeue = true
-		cdt = true
-		pt = true
-		kick = true
-		ptme = true
-		allinv = true
-		pm = true
-		db = true
-		warp = true
-
-	[chat_commands.misc]
-		deux = true
+	[chatcommand.whitelist]
+		enable_whitelist = false
+		whitelist = ""
 

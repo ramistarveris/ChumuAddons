@@ -1,7 +1,7 @@
 import config from "../../../config";
 import { partyMsg } from "../../../utils/Functions"
 
-module.exports = {
+export default {
 
     inv(player, args) {
         if (!config.inv) return;

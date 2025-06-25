@@ -33,7 +33,7 @@ register("packetReceived", () => {
     Java.type("net.minecraft.network.play.server.S37PacketStatistics")
 ]);
 
-module.exports = {
+export default {
 
     help(player, args) {
         if (!config.help) return;

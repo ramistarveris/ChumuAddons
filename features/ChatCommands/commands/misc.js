@@ -4,7 +4,7 @@ const URL = Java.type("java.net.URL");
 const Scanner = Java.type("java.util.Scanner");
 
 
-module.exports = {
+export default {
 
     uuid(player, args) {
         if (!config.uuid) return; 

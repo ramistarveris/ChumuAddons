@@ -9,6 +9,7 @@ import {
     Color,
     @SelectorProperty
 } from "Vigilance";
+import chatCommandsConfig from "./features/ChatCommands/config";
 
 @Vigilant("ChumuAddons", "§l§bChumu§9Addons", {
     getCategoryComparator: () => (a, b) => {
@@ -18,7 +19,7 @@ import {
 })
 
 class Config {
-
+    
     /* ========== General ========== */
 
     @SwitchProperty({
@@ -356,213 +357,14 @@ class Config {
     partyFinderNotifier = false;
 
     /* ===== Chat Commands ===== */
-    @SwitchProperty({
-        name: "Toggle Chat Commands",
-        description: 'Enables the use of chat commands',
-        category: 'Chat Commands',
+    @ButtonProperty({
+        name: "Open Chat Commands Config",
+        description: "Open the Chat Commands GUI.",
+        category: "Chat Commands"
     })
-    toggleChatCommands = true;
-    @TextProperty({
-        name: 'Prefix',
-        description: 'Change chat command prefix\nDefault prefix is \"!\". Ex: !help, !inv\nUse commas without spaces to specify multiple prefixes\n',
-        category: 'Chat Commands',
-    })
-    prefix = "!";
-    @TextProperty({
-        name: "Blacklist",
-        description: "Enter the users you wish to add to your Blacklist, \nSeparated by a single space \n(e.g. CatGirlNecron Femboy_Sadan Okinaw_a)",
-        category: 'Chat Commands'
-    })
-    blacklist = "";
-    @TextProperty({
-        name: "Whitelist",
-        description: "Enter the users you wish to add to your Whitelist, \nSeparated by a single space \n(e.g. JerryChan Haai NaN NigaSky)",
-        category: 'Chat Commands'
-    })
-    whitelist = "";
-    
-    // @SwitchProperty({
-    //    name: 'Black List',
-    //    description: '/ca bl (add/remove)',
-    //    category: 'Chat Commands'
-    // })
-    // blacklist = false;
-    
-    // @SwitchProperty({
-    //    name: 'White List',
-    //    description: '/ca wl (add/remove)',
-    //    category: 'Chat Commands'
-    // })
-    // whitelist = false;
-    
-    // Commands
-    @SwitchProperty({
-        name: 'help',
-        description: 'Send ChatCommads help.',
-        category: 'Chat Commands',
-        subcategory: 'General'
-    })
-    help = true;
-    @SwitchProperty({
-        name: 'ping',
-        description: '',
-        category: 'Chat Commands',
-        subcategory: 'General'
-    })
-    ping = true;
-    @SwitchProperty({
-        name: 'tps',
-        description: '',
-        category: 'Chat Commands',
-        subcategory: 'General'
-    })
-    tps = true;
-    @SwitchProperty({
-        name: 'coords', 
-        description: '',
-        category: 'Chat Commands',
-        subcategory: 'General'
-    })
-    coords = true;
-
-    // Party
-    @SwitchProperty({
-        name: 'inv', // /p invite <mcid>
-        description: '!inv <mcid> (/p invite <mcid>)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    inv = true;
-    @SwitchProperty({
-        name: 'allinv', // /p setting allinvite
-        description: '!allinv (/p setting allinvite)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    allinv = true;
-    @SwitchProperty({
-        name: 'tr',
-        description: '!tr <mcid> (/p transfer <mcid>) \n(Aliases: pt)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    tr = true;
-    @SwitchProperty({
-        name: 'ptme',
-        description: '!ptme (Party Leader Exec: /p transfer <yourID>)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    ptme = true;
-    @SwitchProperty({
-        name: 'pm', // /p promote <mcid>
-        description: '!pm <mcid> (/p promote <mcid>)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    pm = true;
-    @SwitchProperty({
-        name: 'warp',
-        description: '!warp (/p warp)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    warp = true;
-    @SwitchProperty({
-        name: 'kick',
-        description: '!kick <mcid> (/p kick <mcid>)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    kick = true;
-    @SwitchProperty({
-        name: 'db',
-        description: '!db (/p disband)',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    db = true;
-    @SwitchProperty({
-        name: 'dt',
-        description: '!dt <text:reason> \nRequest down time from party leader\nIf Dungeon Requeue is turned on, Dugeon Requeue on that Run will not run automatically.',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    dt = true;
-    @SwitchProperty({
-        name: 'cdt',
-        description: '!cdt \nIf you had sent "!dt", cancel it',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    cdt = true;
-    @SwitchProperty({
-        name: 'requeue',
-        description: '!requeue <number:time(s)>\nTemporarily change the Dungeon Requeue time\nSettings will be carried over to the next run',
-        category: 'Chat Commands',
-        subcategory: 'Party'
-    })
-    requeue = true;
-
-    // Misc
-    @SwitchProperty({
-        name: "uuid",
-        description: "test",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    uuid = true;
-    @SwitchProperty({
-        name: "deux",
-        description: "Randomly returns one of the two arguments; use quotes to include spaces (e.g. !deux \"stay home\" \"destroy school\")",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    deux = true;
-    @SwitchProperty({
-        name: "iq",
-        description: "",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    iq = true;
-    @SwitchProperty({
-        name: "dice",
-        description: "",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    dice = true;
-    @SwitchProperty({
-        name: "rnd",
-        description: "(e.g. !rnd tax tox tix) = tix",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    rnd = true;
-    @SwitchProperty({
-        name: "math",
-        description: "",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    math = true;
-    @SwitchProperty({
-        name: "watchdogreport",
-        description: "!watchdogreport <mcid> (Aliases: wdr)",
-        category: "Chat Commands",
-        subcategory: "Misc"
-    })
-    watchdogreport = true;
-
-    // JoinInstance Shortcut
-    @SwitchProperty({
-        name: "JoinInstance Shortcuts",
-        description: "Enables the !f1, !m3, !t5 etc. to run /joininstance",
-        category: "Chat Commands",
-        subcategory: "Party - JoinInstance"
-    })
-    joininstance = true;
+    openChatCommandsConfig() {
+        chatCommandsConfig.openGUI();
+    }
 
     constructor() {
         this.initialize(this);

@@ -1,6 +1,4 @@
-/**
- * Colors.
- */
+// colors
 export const BLACK = '&0';
 export const DARK_BLUE = '&1';
 export const DARK_GREEN = '&2';
@@ -17,14 +15,10 @@ export const RED = '&c';
 export const LIGHT_PURPLE = '&d';
 export const YELLOW = '&e';
 export const WHITE = '&f';
-
-/**
- * Formatting codes.
- */
+// formattings
 export const OBFUSCATED = '&k';
 export const BOLD = '&l';
 export const STRIKETHROUGH = '&m';
 export const UNDERLINE = '&n';
 export const ITALIC = '&o';
 export const RESET = '&r';
-
