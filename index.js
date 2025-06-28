@@ -1,7 +1,9 @@
 import config from "./config";
 import chatCommandsConfig from "./features/ChatCommands/config";
 
-import "./debug";
+try {
+    require("./debug");
+} catch(e) {}
 global.illegalMode = false;
 
 // ChatCommands

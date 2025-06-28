@@ -8,8 +8,8 @@ export const configHeader = `§9[§bChumu§9] &ev${moduleVersion} \nMade by ${mo
 const messageColors = { info: `&e`, success: `&a`, error: `&c`, warning: `&6` };
 
 export const showChatMessage = (message, status = "info") => { 
-  const color = messageColors[status] || messageColors.info;
-  ChatLib.chat(`${PREFIX} ${color}${message}`);
+    const color = messageColors[status] || messageColors.info;
+    ChatLib.chat(`${PREFIX} ${color}${message}`);
 }
 
 // Alternative to World.playSound()
@@ -20,24 +20,24 @@ const SettingsGui = Java.type("gg.essential.vigilance.gui.SettingsGui");
 const registers = [];
 
 export const registerWhen = (trigger, dependency) => {
-  registers.push({
-    controller: trigger.unregister(),
-    dependency,
-    registered: false,
-  });
+    registers.push({
+        controller: trigger.unregister(),
+        dependency,
+        registered: false,
+    });
 };
 
 export const setRegisters = () => {
-  registers.forEach((item) => {
-    const shouldBeRegistered = item.dependency();
-    if (shouldBeRegistered && !item.registered) {
-      item.controller.register();
-      item.registered = true;
-    } else if (!shouldBeRegistered && item.registered) {
-      item.controller.unregister();
-      item.registered = false;
-    }
-  });
+    registers.forEach((item) => {
+        const shouldBeRegistered = item.dependency();
+        if (shouldBeRegistered && !item.registered) {
+            item.controller.register();
+            item.registered = true;
+        } else if (!shouldBeRegistered && item.registered) {
+            item.controller.unregister();
+            item.registered = false;
+        }
+    });
 };
 
 register("gameLoad", () => setRegisters());

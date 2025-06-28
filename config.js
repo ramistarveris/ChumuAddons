@@ -355,6 +355,12 @@ class Config {
         category: 'Notification',
     })
     partyFinderNotifier = false;
+    @SwitchProperty({
+        name: "Party Invite Notifier",
+        description: "When you recieved party invite, send windows notification",
+        category: "Notification",
+    })
+    partyInviteNotifier = false;
 
     /* ===== Chat Commands ===== */
     @ButtonProperty({
@@ -372,10 +378,7 @@ class Config {
         this.addDependency("Reminder Interval", "Crypt Reminder");
         this.addDependency("Send Missing Crypts", "Crypt Reminder");
         this.addDependency("Missing Crypts Title", "Crypt Reminder");
-
-        // this.addDependency("&dEnable ESP Mimic Chest", "Mimic Chest Highlight");
         this.addDependency("Mimic Chest Color", "Mimic Chest Highlight");
-        // this.addDependency("&dEnable ESP Wither Box", "Wither Box");
 
         this.addDependency("Select Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
         this.addDependency("Custom Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");

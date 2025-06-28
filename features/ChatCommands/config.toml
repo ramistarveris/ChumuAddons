@@ -11,3 +11,49 @@
 		enable_whitelist = false
 		whitelist = ""
 
+[general]
+	help = true
+	wdr = true
+	ping = true
+	tps = true
+	time = true
+	chumu = true
+
+[skyblock]
+	bank = true
+	cata = true
+	playtime = true
+	runs = true
+	secrets = true
+	class = true
+	coords = true
+	pet = true
+
+[party]
+	reparty = true
+	pt = true
+	inv = true
+	requeue = true
+	dt = true
+	promote = true
+	demote = true
+	kick = true
+	joininstace_shortcuts = true
+	wl = true
+	allinv = true
+	wt = true
+	disband = true
+	tr = true
+	warp = true
+	undt = true
+
+[misc]
+	issi = true
+	holding = true
+	racism = true
+	8ball = true
+	dice = true
+	iq = true
+	location = true
+	coinflip = true
+
