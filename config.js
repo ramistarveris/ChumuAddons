@@ -29,7 +29,7 @@ class Config {
         placeholder: "EDIT"
     })
     openGUIEditor() {
-        ChatLib.command("cagui");
+        ChatLib.command("cagui", true);
     }
 
     @SwitchProperty({
