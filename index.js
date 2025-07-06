@@ -11,7 +11,7 @@ import "./features/ChatCommands/config";
 // General
 import "./features/General/autopetDisplay";
 // General - Overlays
-import "./features/General/legionCounter";
+// import "./features/General/legionCounter";
 import "./features/General/speedOverlay";
 
 // Dungeons

@@ -61,12 +61,52 @@ class Config {
         category: 'Dungeons',
     })
     batDead = false;
-    @SwitchProperty({
+
+    // Shadow Assassin
+    @SwitchProperty({ 
         name: "Shadow Assassin Jamping",
         description: "!!WARNIN!! SA TELEPORTING YOU!!!",
         category: "Dungeons",
+        subcategory: "Shadow Assassin"
     })
     saJumping = false;
+    @SwitchProperty({
+        name: "> Use Custom Sound (SA)",
+        description: "Play a custom sound when SA jumps.",
+        category: "Dungeons",
+        subcategory: "Shadow Assassin"
+    })
+    saUseCustomSound = false;
+    @TextProperty({
+        name: ">> Custom Sound Name (SA)",
+        description: "Specify the sound name (e.g., mob.wither.spawn).",
+        category: "Dungeons",
+        subcategory: "Shadow Assassin"
+    })
+    saCustomSoundName = "random.orb";
+    @TextProperty({
+        name: ">> Custom Sound Volume (SA)",
+        description: "Set the volume of the custom sound (0.0 - 1.0).",
+        category: "Dungeons",
+        subcategory: "Shadow Assassin",
+    })
+    saCustomSoundVolume = "1";
+    @TextProperty({
+        name: ">> Custom Sound Pitch (SA)",
+        description: "Set the pitch of the custom sound (0.5 - 2).",
+        category: "Dungeons",
+        subcategory: "Shadow Assassin"
+    })
+    saCustomSoundPitch = "1";
+    @SliderProperty({
+        name: ">> Custom Sound Repeat (SA)",
+        description: "How many times to repeat the custom sound.",
+        category: "Dungeons",
+        subcategory: "Shadow Assassin",
+        min: 1,
+        max: 10
+    })
+    saCustomSoundRepeat = 1;
 
     // > Dungeon Requeue
     @SwitchProperty({

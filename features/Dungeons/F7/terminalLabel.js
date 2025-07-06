@@ -2,6 +2,7 @@ import config from "../../../config";
 import { getGoldorPhase } from "../../../utils/Dungeons";
 import { Render3D } from "../../../../tska/rendering/Render3D";
 
+// Credits Meow Addons
 const DEBUG = false;
 
 const phases = {
