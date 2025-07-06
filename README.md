@@ -4,5 +4,5 @@
 
 Chattrigger Module for Hypixel Skyblock, which is mainly used for Dungeon and QOL functions.
 
-Join Discord!! ↓
+Join Discord!! ↓<br>
 https://discord.gg/XB7x4pTknM
