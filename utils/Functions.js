@@ -15,10 +15,9 @@ export const Data = new LocalStore("ChumuAddons", {
 
 // - Message Functions
 export function message_help() {
-    partyMsg("[CA] Cmds: !help <general, party, misc or skyblock>")
+    partyMsg("[CA] Cmds: !help <general, party, misc or skyblock>");
 }
 
 export function message_chumu() {
     partyMsg("ChumuAddons!")
 }
-

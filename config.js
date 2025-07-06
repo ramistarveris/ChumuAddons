@@ -1,10 +1,10 @@
 import { LIGHT_PURPLE, RED } from "./utils/Constants";
-import { 
-    @Vigilant, 
-    @SwitchProperty, 
-    @TextProperty, 
-    @SliderProperty, 
-    @ButtonProperty, 
+import {
+    @Vigilant,
+    @SwitchProperty,
+    @TextProperty,
+    @SliderProperty,
+    @ButtonProperty,
     @ColorProperty,
     Color,
     @SelectorProperty
@@ -19,23 +19,17 @@ import chatCommandsConfig from "./features/ChatCommands/config";
 })
 
 class Config {
-    
-    /* ========== General ========== */
-
-    @SwitchProperty({
-        name: "Test Overlay",
-        description: "Shows a test overlay",
-        category: "General"
-    })
-    testOverlay = true;
+    // ========== General ==========
 
     @ButtonProperty({
-        name: "Move GUIs",
-        description: "Open GUI position edit screen (/cagui)",
-        category: "General"
+        name: "Open GUI Editor",
+        description: "Open HUD positions edit screen (/cagui)",
+        category: "General",
+        subcategory: "Overlays",
+        placeholder: "EDIT"
     })
     openGUIEditor() {
-        ChatLib.command("cagui", true);
+        ChatLib.command("cagui");
     }
 
     @SwitchProperty({
@@ -52,8 +46,60 @@ class Config {
     })
     legionCounter = false;
 
-    /* ========= Dungeons ========== */
-    
+    @SwitchProperty({
+        name: "Speed Overlay",
+        description: "Enable display of your speed status",
+        category: "General",
+    })
+    speedOverlay = false;
+
+    // ========== Dungeons ==========
+
+    @SwitchProperty({
+        name: 'Bat Dead Title',
+        description: 'Display Bat Dead when bat dead.',
+        category: 'Dungeons',
+    })
+    batDead = false;
+    @SwitchProperty({
+        name: "Shadow Assassin Jamping",
+        description: "!!WARNIN!! SA TELEPORTING YOU!!!",
+        category: "Dungeons",
+    })
+    saJumping = false;
+
+    // > Dungeon Requeue
+    @SwitchProperty({
+        name: "Enable Dungeon Requeue",
+        description: "After the dungeon ends, a new dungeon is automatically restarted",
+        category: "Dungeons",
+        subcategory: "Dungeon Requeue",
+    })
+    toggleDungeonRequeue = false;
+    @SliderProperty({
+        name: "Delay",
+        description: "Delay time to requeue (seconds)",
+        category: "Dungeons",
+        subcategory: "Dungeon Requeue",
+        min: 0,
+        max: 30,
+    })
+    dungeonRequeueDelay = 10;
+    @SwitchProperty({
+        name: "Disable on Leave/Kick",
+        description: "Stop the next recue function if someone leaves the party or kicks",
+        category: "Dungeons",
+        subcategory: "Dungeon Requeue",
+    })
+    dungeonRequeueAutoDisable = true;
+    @SwitchProperty({
+        name: "Enable Requeue Delay Command",
+        description: "Extend delay if Requeue command is executed\nCommand Usage: !rq <seconds>",
+        category: "Dungeons",
+        subcategory: "Dungeon Requeue",
+    })
+    dungeonRequeueRequeueCommand = true;
+
     // > Starred Mob
     @SwitchProperty({
         name: "Starred Mob Highlight",
@@ -61,12 +107,6 @@ class Config {
         category: "Dungeons",
     })
     starredMob = false;
-    // @SwitchProperty({
-    //     name: "Enable ESP Starred Mob",
-    //     description: "Starred Mob can be highlighted through walls",
-    //     category: "Dungeons",
-    // })
-    // starredMobESP = false;
     @ColorProperty({
         name: 'Starred Mob Highlight Color',
         description: 'Pick up a color for the starred mob highlight.',
@@ -74,11 +114,12 @@ class Config {
     })
     starredMobColor = Color.BLUE;
 
+    // > Key Highlight
     @SwitchProperty({
-    name: "Key Highlight",
-    description: "Highlights the Wither&Blood Key in dungeons",
-    category: "Dungeons",
-    subcategory: "Key"
+        name: "Key Highlight",
+        description: "Highlights the Wither&Blood Key in dungeons",
+        category: "Dungeons",
+        subcategory: "Key"
     })
     keyHighlight = false;
     @ColorProperty({
@@ -96,21 +137,7 @@ class Config {
     })
     keyHighlightColorBlood = Color.RED;
 
-    @SwitchProperty({
-        name: 'Bat Dead Title',
-        description: 'Display Bat Dead when bat dead.',
-        category: 'Dungeons',
-    })
-    batDead = false;
-    @SwitchProperty({
-        name: "Shadow Assassin Jamping",
-        description: "!!WARNIN!! SA TELEPORTING YOU!!!",
-        category: "Dungeons",
-    })
-    saJumping = false;
-
-    // Dungeon - Crypt Reminder
-    // > Toggle Crypt Reminder
+    // > Crypt Reminder
     @SwitchProperty({
         name: "Crypt Reminder",
         description: "Enable the crypt reminder feature in dungeons.",
@@ -118,7 +145,6 @@ class Config {
         subcategory: "Crypt Reminder"
     })
     cryptReminder = false;
-    // > Remind Time
     @SliderProperty({
         name: "Reminder Interval",
         description: "How often (in seconds) to remind if crypts are missing",
@@ -128,7 +154,6 @@ class Config {
         max: 120,
     })
     cryptReminderInterval = 60;
-    // > Display Missing Crypt Amount
     @SwitchProperty({
         name: "Missing Crypts Title",
         description: "Show a title with the amount of missing crypts.",
@@ -136,7 +161,6 @@ class Config {
         subcategory: "Crypt Reminder",
     })
     cryptReminderTitle = true;
-    // > Send Missing Crypts
     @SwitchProperty({
         name: "Send Missing Crypts",
         description: "Announce the amount of missing crypts in party chat.",
@@ -144,7 +168,7 @@ class Config {
         subcategory: "Crypt Reminder",
     })
     sendMissingCrypts = true;
-    
+
     // > Display Crypt Done
     @SwitchProperty({
         name: "Crypt Done",
@@ -162,7 +186,7 @@ class Config {
     })
     sendCryptDone = true;
 
-    // Dungeon - Leap
+    // > Leap
     @SwitchProperty({
         name: 'Leap Announce',
         description: 'Says in party chat who you are leaping to.',
@@ -179,8 +203,7 @@ class Config {
     })
     hideLeap = 0;
 
-    // Dungeon - Mimic
-    // > Mimic Chest
+    // > Mimic
     @SwitchProperty({
         name: "Mimic Chest Highlight",
         description: "Highlight TrapChest in Dungeon",
@@ -195,8 +218,6 @@ class Config {
         subcategory: "Mimic"
     })
     mimicChestColor = Color.RED;
-
-    // > Mimic Dead
     @SwitchProperty({
         name: 'Send Mimic Dead Message',
         description: `Send Mimic Dead! on detected mimic killed.\n ※ Forge mod specs recommended! \n${LIGHT_PURPLE}[WIP] ${RED}Does not work!`,
@@ -204,7 +225,7 @@ class Config {
         subcategory: 'Mimic'
     })
     mimicDead = false;
-    
+
     // > Immunity Cooldown
     @SwitchProperty({
         name: 'Display Mask/Pet Activated',
@@ -254,12 +275,14 @@ class Config {
     CustomMaskCooldownSound = "random.anvil_land";
     @ButtonProperty({
         name: 'List of Sounds',
-        description: 'Click to print the list of sounds URL to chat.',
+        description: 'Click to open the list of sounds URL in your browser.',
         category: 'Dungeons',
-        subcategory: 'Immunity Cooldown'
+        subcategory: 'Immunity Cooldown',
+        placeholder: 'CLICK'
     })
     openSoundList() {
-        ChatLib.chat("&bSound List:\nhttps://www.minecraftforum.net/forums/mapping-and-modding-java-edition/mapping-and-modding-tutorials/2213619-1-8-all-playsound-sound-arguments");
+        java.awt.Desktop.getDesktop().browse(new java.net.URI("https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/mapping-and-modding-tutorials/2213619-1-8-all-playsound-sound-arguments"));
+        return;
     }
     @SwitchProperty({
         name: 'Mask/Pet Cooldown HUD',
@@ -269,8 +292,7 @@ class Config {
     })
     displayMaskCooldownHUD = false;
 
-    // each Floor
-    // F3/M3
+    // > Boss
     @SwitchProperty({
         name: "Fire Freeze Notifier",
         description: "Show when to use FireFreeze in M3.",
@@ -279,7 +301,7 @@ class Config {
     })
     fireFreezeNotifier = false;
 
-    // F5
+    // > Dedicated to each floor
     @SwitchProperty({
         name: "Livid vuln Timer",
         description: "Display the timer until Ice Spray can be used on Livid.",
@@ -288,67 +310,74 @@ class Config {
     })
     lividVulnTimer = false;
 
-    // F6/M6
+    // ========== F7/M7 ==========
 
-    /* ===== F7/M7 ====== */
-    // > terminal - labels (Credits: MeowAddons)
+    // > P3
     @SwitchProperty({
         name: 'Display Terminal Number',
         description: 'Displays the terminal number in front of the terminal',
-        category: 'F7\/M7',
+        category: 'F7/M7',
         subcategory: 'P3'
     })
     displayTermNumber = false;
     @SwitchProperty({
         name: "Display Terminal Class",
         description: 'Display each class name in front of terminal',
-        category: 'F7\/M7',
+        category: 'F7/M7',
         subcategory: 'P3'
     })
     displayTermClass = false;
     @SwitchProperty({
         name: "Display Device",
         description: "Displays the location of the device",
-        category: 'F7\/M7',
+        category: 'F7/M7',
         subcategory: 'P3'
     })
     displayDevice = false;
     @SliderProperty({
         name: 'Display Class Distance',
         description: 'Distance at which class name is displayed',
-        category: 'F7\/M7',
+        category: 'F7/M7',
         subcategory: 'P3',
         min: 0,
         max: 15
     })
     displayClassDistance = 14;
-
-    // > Wither Box
+    // > General
     @SwitchProperty({
         name: 'Wither Box',
         description: 'Highlight Boss Witherlords',
-        category: 'F7\/M7',
+        category: 'F7/M7',
         subcategory: 'General'
     })
     witherBox = false;
-
-    /* ===== Mining ===== */
-    @SwitchProperty({
-        name: 'Is old Server?',
-        description: 'You can check how many days have passed since this server was created',
-        category: 'Mining',
+    @ColorProperty({
+        name: 'Wither Box Color',
+        description: "Color uses wither box",
+        category: "F7/M7",
+        subcategory: "General"
     })
-    isOldServer = false;
+    colorWitherBox = Color.RED;
 
-    /* ===== Misc ===== */
+    // ========== Mining ==========
+
+    // ========== Misc ==========
+
     @SwitchProperty({
         name: 'Shattap Watcher',
         description: 'Disable watcher music only',
         category: 'Misc'
     })
     shattapWatcher = false;
+    @SwitchProperty({
+        name: "World Age",
+        description: "Display worldDisplays the number of days elapsed in the world",
+        category: "Misc"
+    })
+    worldAge = false;
 
-    /* ===== Notification ===== */
+    // ========== Notification ==========
+
     @SwitchProperty({
         name: "Party Finder Notifier",
         description: 'Send party finder notifications (Windows Notification)',
@@ -362,7 +391,8 @@ class Config {
     })
     partyInviteNotifier = false;
 
-    /* ===== Chat Commands ===== */
+    // ========== Chat Commands ==========
+
     @ButtonProperty({
         name: "Open Chat Commands Config",
         description: "Open the Chat Commands GUI.",
@@ -384,7 +414,8 @@ class Config {
         this.addDependency("Custom Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
         this.addDependency("List of Sounds", "Display Mask/Pet Cooldown Announce");
     }
+
+
 }
 
-
-export default new Config(); 
+export default new Config();

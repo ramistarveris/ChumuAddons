@@ -1,5 +1,5 @@
-import { partyMsg } from "../../../utils/Functions";
-import chatCommandsConfig from "../config";
+import { partyMsg } from "../../../utils/Functions.js";
+import chatCommandsConfig from "../config.js";
 
 const case8ball = [
     // Credits: Odin

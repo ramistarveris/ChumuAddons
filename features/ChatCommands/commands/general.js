@@ -1,5 +1,8 @@
-import { message_chumu, message_help, modMsg, partyMsg } from "../../../utils/Functions";
-import chatCommandsConfig from "../config";
+import { message_chumu, message_help, modMsg, partyMsg } from "../../../utils/Functions.js";
+import chatCommandsConfig from "../config.js";
+
+let lastCommandTime = 0;
+const cooldown = 1500;
 
 let tps = 20;
 let pastDate = 0;
@@ -33,6 +36,9 @@ register("packetReceived", () => {
 ]);
 
 export default function (player, command, args) {
+    if (Date.now() - lastCommandTime < cooldown) return true;
+    lastCommandTime = Date.now();
+
     switch (command) {
         case "help":
         case "h":

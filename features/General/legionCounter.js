@@ -1,42 +1,58 @@
-import config from "../../config.js";
+import config from "../../config";
 import { registerWhen } from "../../utils/Utils";
-import { OverlayTextLine, ChumuOverlay } from "../../utils/Overlays.js";
+import { hud } from "../../utils/Overlays";
 import { YELLOW, BOLD, AQUA } from "../../utils/Constants";
-// legionOverlay legionCounter
-let legionCounter = new ChumuOverlay("legionCounter", "legionCounter", "render", "LegionLoc");
-let legionCounterText = new OverlayTextLine("");
 
-// credits SBO(FeeshNotifier)
+const LegionHUD = hud.createHud("CA:Legion Counter", 300, 250, 100, 10);
+
+let displayText = "";
 
 function getLegionCount() {
     let legionDistance = 30;
     const players = World
         .getAllPlayers()
         .filter(player =>
-            // Player, Watchdog は UUID v4、Nickname付きPlayerはv1。NPCを除外するために使用。
-            (player.getUUID().version() === 4 || player.getUUID().version() === 1) && 
-            player.ping === 1 && // Ping -1 のGhostとWatchdogを除外
+            (player.getUUID().version() === 4 || player.getUUID().version() === 1) &&
+            player.ping === 1 &&
             player.name != Player.getName() &&
-            disctanceToPlayer(player) <= legionDistance
+            distanceToPlayer(player) <= legionDistance
         )
         .map(player => player.name)
-        .filter((x, i, a) => a.indexOf(x) == i);
-    
-    playersCount = players.length;
-    return playersCount;
+        .filter((x, i, a) => a.indexOf(x) === i);
+
+    return players.length;
 }
 
-function refreshlegionCounter() {
-    legionCounter.setLines([legionCounterText.setText(`${AQUA}${BOLD}Legion: ${YELLOW}${BOLD}${getLegionCount()}`)]);
+function distanceToPlayer(player) {
+    return Math.sqrt((player.x - Player.getX()) ** 2 + (player.z - Player.getZ()) ** 2);
 }
 
 registerWhen(register("step", () => {
-    refreshlegionCounter();
+    const count = getLegionCount();
+    displayText = `${AQUA}${BOLD}Legion: ${YELLOW}${BOLD}${count}`;
 }).setFps(1), () => config.legionCounter);
 
-function disctanceToPlayer(player) {
-    return distance = Math.sqrt((player.x - Player.getX()) ** 2 + (player.z - Player.getZ()) ** 2);
-}
+// Normal View
+register("renderOverlay", () => {
+    if (hud.isOpen() || !config.legionCounter || !displayText) return;
 
-// TODO:
-// FIX
+    Renderer.retainTransforms(true);
+    Renderer.translate(LegionHUD.getX(), LegionHUD.getY());
+    Renderer.scale(LegionHUD.getScale());
+
+    Renderer.drawString(displayText, 0, 0);
+
+    Renderer.retainTransforms(false);
+});
+
+// Editor View
+LegionHUD.onDraw(() => {
+    Renderer.retainTransforms(true);
+    Renderer.translate(LegionHUD.getX(), LegionHUD.getY());
+    Renderer.scale(LegionHUD.getScale());
+
+    Renderer.drawString(`${AQUA}${BOLD}Legion: ${YELLOW}${BOLD}5`, 0, 0);
+
+    Renderer.retainTransforms(false);
+    Renderer.finishDraw();
+});

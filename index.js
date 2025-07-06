@@ -4,41 +4,45 @@ import chatCommandsConfig from "./features/ChatCommands/config";
 try {
     require("./debug");
 } catch(e) {}
-global.illegalMode = false;
 
 // ChatCommands
 import "./features/ChatCommands/config";
 
 // General
 import "./features/General/autopetDisplay";
-// import "./features/General/legionCounter";
+// General - Overlays
+import "./features/General/legionCounter";
+import "./features/General/speedOverlay";
 
 // Dungeons
 import "./features/Dungeons/cryptReminder";
 import "./features/Dungeons/leapAnnouce";
 import "./features/Dungeons/mimic";
 import "./features/Dungeons/batDead";
-// import "./features/Dungeons/fireFreezeNotifier";
 import "./features/Dungeons/shadowAssassin";
 import "./features/Dungeons/immunityCooldown";
 import "./features/Dungeons/starredMob";
 import "./features/Dungeons/key";
+import "./features/Dungeons/dungeonRequeue";
+// Dungeon - Overlays
+import "./features/Dungeons/fireFreezeNotifier";
 
 // F7
 import "./features/Dungeons/F7/terminalLabel";
 import "./features/Dungeons/F7/witherBox";
 
 // Mining
-// import "./features/mining/isOldServer"
 
 // Misc 
 import "./features/Misc/shattapWatcher";
+// import "./features/Misc/worldAge";
 
 // Notification 
 import "./features/Notification/partyFinderNotifier";
 
 // Need to load once
-import "./utils/Utils"
+import "./utils/Utils";
+import "./utils/Overlays";
 
 import { DARK_AQUA, GRAY, YELLOW } from "./utils/Constants";
 import { PREFIX } from "./utils/Utils";
@@ -58,14 +62,20 @@ register("command", (...args) => {
 
         case "help":
             modMsg(DARK_AQUA + "ChumuAddons Help:");
-            ChatLib.chat(GRAY + "/ca - Open the ChumuAddons Config GUI");
-            ChatLib.chat(GRAY + "/ca help - Display this help message");
-            ChatLib.chat(GRAY + "/ca chatcommands - Open the ChatCommands GUI (Alias: /ca cc)");
+            ChatLib.chat(GRAY + "/ca &8- &7Open the ChumuAddons Config GUI");
+            ChatLib.chat(GRAY + "/ca help &8- &7Display this help message");
+            ChatLib.chat(GRAY + "/ca gui &8- &7Open hud positions edit screen (Alias: /camovegui, /ca hud, /cagui)")
+            ChatLib.chat(GRAY + "/ca chatcommands &8- &7Open the ChatCommands configs (Alias: /ca cc)");
             break;
 
         case "chatcommands":
         case "cc":
             chatCommandsConfig.openGUI();
+            break;
+
+        case "gui":
+        case "hud":
+            ChatLib.chat("camovegui");
             break;
 
         default:

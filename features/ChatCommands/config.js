@@ -1,3 +1,4 @@
+import "./chatCommands";
 import { 
     @Vigilant, 
     @CheckboxProperty,
@@ -73,7 +74,7 @@ class chatCommandsConfig {
     @SwitchProperty({ name: "time",  category: "General" }) time = true;
     @SwitchProperty({ name: "wdr", category: "General" }) wdr = false;
 
-    // Party 0/16 Complete
+    // Party 9/16 Complete
     @SwitchProperty({ name: "warp", description:"w", category: "Party" }) warp = true;
     @SwitchProperty({ name: "wt", description:"warptransfer", category: "Party" }) warptransfer = true;
     @SwitchProperty({ name: "wl", description:"warplocation warplocate", category: "Party" }) warplocate = true; // CHUMU ONLY
@@ -117,5 +118,3 @@ class chatCommandsConfig {
 }
 
 export default new chatCommandsConfig();
-
-import "./chatCommands";
