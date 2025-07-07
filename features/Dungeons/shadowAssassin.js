@@ -24,20 +24,15 @@ register("packetReceived", (packet, event) => {
 
     // Play sound if enabled
     try {
-        if (config.saUseCustomSound) {
-            const pitch = parseFloat(config.saCustomSoundPitch);
-            const volume = config.saCustomSoundVolume;
-            const repeat = config.saCustomSoundRepeat;
+        if (!config.saUseCustomSound) return;
+        const pitch = parseFloat(config.saCustomSoundPitch);
+        const volume = config.saCustomSoundVolume;
+        const repeat = config.saCustomSoundRepeat;
 
-            modMsg(`§7[Debug] Sound config - Name: ${config.saCustomSoundName}, Volume: ${volume}, Pitch: ${pitch}, Repeat: ${repeat}`);
-
-            for (let i = 0; i < repeat; i++) {
-                setTimeout(() => {
-                    World.playSound(config.saCustomSoundName, volume, pitch);
-                }, i * 500);
-            }
-        } else {
-            modMsg("§7[Debug] Custom sound is disabled");
+        for (let i = 0; i < repeat; i++) {
+            setTimeout(() => {
+                World.playSound(config.saCustomSoundName, volume, pitch);
+            }, i * 500);
         }
     } catch (e) {
         modMsg(`§c[Error] Failed to play custom sound: ${e}`);

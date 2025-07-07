@@ -3,7 +3,7 @@ import { registerWhen } from "../../utils/Utils";
 import { hud } from "../../utils/Overlays";
 import { YELLOW, BOLD, AQUA } from "../../utils/Constants";
 
-const LegionHUD = hud.createHud("CA:Legion Counter", 300, 250, 100, 10);
+const LegionHUD = hud.createHud("CA:Legion Counter", 300, 250, 60, 10);
 
 let displayText = "";
 

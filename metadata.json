@@ -2,7 +2,7 @@
     "name": "ChumuAddons",
     "author": "nkze",
     "entry": "index.js",
-    "version": "1.3.3",
-    "description": "feline felony", 
+    "version": "1.4.2",
+    "description": "Step Away!", 
     "requires": ["Vigilance", "BloomCore", "tska"]
 }
