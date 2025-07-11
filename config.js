@@ -1,3 +1,4 @@
+import chatCommandsConfig from "./features/ChatCommands/config";
 import { LIGHT_PURPLE, RED } from "./utils/Constants";
 import {
     @Vigilant,
@@ -9,11 +10,10 @@ import {
     Color,
     @SelectorProperty
 } from "Vigilance";
-import chatCommandsConfig from "./features/ChatCommands/config";
 
 @Vigilant("ChumuAddons", "§l§bChumu§9Addons", {
     getCategoryComparator: () => (a, b) => {
-        const order = ["General", "Dungeons", "F7/M7", "Mining", "Notification", "Chat Commands", "Misc", "HUD"];
+        const order = ["General", "Dungeons", "F7/M7", "Mining", "Notification", "Chat Commands", "Misc", "Debug"];
         return order.indexOf(a.name) - order.indexOf(b.name);
     },
 })
@@ -52,6 +52,13 @@ class Config {
         category: "General",
     })
     speedOverlay = false;
+
+    @SwitchProperty({
+        name: "Party Invite Sound",
+        description: "Play sound when you receive a party invitation",
+        category: "General",
+    })
+    partyInviteSound = false;
 
     // ========== Dungeons ==========
 
@@ -442,6 +449,39 @@ class Config {
         chatCommandsConfig.openGUI();
     }
 
+    // ========== Debug ==========
+    
+    @ButtonProperty({
+        name: "Play Sound",
+        category: "Debug",
+        subcategory: "Sounds",
+        placeholder: "Play"
+    })
+    debugPlaySound() {
+        try {
+            World.playSound(this.debugSoundID, 1, 1);
+            ChatLib.chat(`§a[Debug] Played sound: §b${this.debugSoundID}`);
+        } catch (e) {
+            ChatLib.chat(`§c[Debug] Failed to play sound: §e${this.debugSoundID}`);
+        }
+    }
+    @TextProperty({
+        name: "Sound ID",
+        category: "Debug",
+        subcategory: "Sounds"
+    })
+    debugSoundID = "random.anvil_land";
+    @ButtonProperty({
+        name: "List of Sounds",
+        category: "Debug",
+        subcategory: "Sounds",
+        placeholder: "Click"
+    })
+    openSoundList() {
+        java.awt.Desktop.getDesktop().browse(new java.net.URI("https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/mapping-and-modding-tutorials/2213619-1-8-all-playsound-sound-arguments"));
+        return;
+    }
+
     constructor() {
         this.initialize(this);
 
@@ -453,6 +493,11 @@ class Config {
         this.addDependency("Select Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
         this.addDependency("Custom Cooldown Announce Sound", "Display Mask/Pet Cooldown Announce");
         this.addDependency("List of Sounds", "Display Mask/Pet Cooldown Announce");
+
+        this.addDependency(">> Custom Sound Name (SA)", "> Use Custom Sound (SA)");
+        this.addDependency(">> Custom Sound Volume (SA)", "> Use Custom Sound (SA)");
+        this.addDependency(">> Custom Sound Pitch (SA)", "> Use Custom Sound (SA)");
+        this.addDependency(">> Custom Sound Repeat (SA)", "> Use Custom Sound (SA)");
     }
 
 

@@ -3,7 +3,7 @@ import { registerWhen } from "../../utils/Utils";
 import { hud } from "../../utils/Overlays";
 import { YELLOW, BOLD, AQUA } from "../../utils/Constants";
 
-const LegionHUD = hud.createHud("CA:Legion Counter", 300, 250, 60, 10);
+const LegionHUD = hud.createHud("CA:Legion Counter", 300, 250, 40, 10);
 
 let displayText = "";
 
@@ -40,7 +40,7 @@ register("renderOverlay", () => {
     Renderer.translate(LegionHUD.getX(), LegionHUD.getY());
     Renderer.scale(LegionHUD.getScale());
 
-    Renderer.drawString(displayText, 0, 0);
+    Renderer.drawStringWithShadow(displayText, 0, 0);
 
     Renderer.retainTransforms(false);
 });
@@ -51,7 +51,7 @@ LegionHUD.onDraw(() => {
     Renderer.translate(LegionHUD.getX(), LegionHUD.getY());
     Renderer.scale(LegionHUD.getScale());
 
-    Renderer.drawString(`${AQUA}${BOLD}Legion: ${YELLOW}${BOLD}5`, 0, 0);
+    Renderer.drawStringWithShadow(`${AQUA}${BOLD}Legion: ${YELLOW}${BOLD}5`, 0, 0);
 
     Renderer.retainTransforms(false);
     Renderer.finishDraw();

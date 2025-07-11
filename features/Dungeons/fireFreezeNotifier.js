@@ -40,7 +40,7 @@ register("renderOverlay", () => {
     Renderer.translate(FireFreezeHUD.getX(), FireFreezeHUD.getY());
     Renderer.scale(FireFreezeHUD.getScale());
 
-    Renderer.drawString(displayText, 0, 0);
+    Renderer.drawStringWithShadow(displayText, 0, 0);
 
     Renderer.retainTransforms(false);
 });
@@ -51,7 +51,7 @@ FireFreezeHUD.onDraw(() => {
     Renderer.translate(FireFreezeHUD.getX(), FireFreezeHUD.getY());
     Renderer.scale(FireFreezeHUD.getScale());
 
-    Renderer.drawString("&bFire Freeze: 5.0s", 0, 0);
+    Renderer.drawStringWithShadow("&bFire Freeze: 5.0s", 0, 0);
 
     Renderer.retainTransforms(false);
     Renderer.finishDraw();

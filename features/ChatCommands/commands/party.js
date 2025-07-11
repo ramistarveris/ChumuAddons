@@ -102,7 +102,7 @@ export default function (player, command, args) {
         case "pt":
         case "ptme":
             if (!chatCommandsConfig.pt) return true;
-            modMsg("&5WIP COMMAND");
+            ChatLib.command(`party transfer ${player}`);
             return true;
 
         case "dt":
@@ -121,3 +121,4 @@ export default function (player, command, args) {
     }
     return false;
 }
+    

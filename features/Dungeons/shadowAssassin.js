@@ -22,11 +22,14 @@ register("packetReceived", (packet, event) => {
     // Chat message
     modMsg(`${DARK_AQUA}Shadow Assassin!`);
 
-    // Play sound if enabled
     try {
-        if (!config.saUseCustomSound) return;
+        if (!config.saUseCustomSound) {
+            World.playSound("random.orb", 1, 1);
+            return;
+        }
+
         const pitch = parseFloat(config.saCustomSoundPitch);
-        const volume = config.saCustomSoundVolume;
+        const volume = parseFloat(config.saCustomSoundVolume);
         const repeat = config.saCustomSoundRepeat;
 
         for (let i = 0; i < repeat; i++) {
@@ -35,6 +38,6 @@ register("packetReceived", (packet, event) => {
             }, i * 500);
         }
     } catch (e) {
-        modMsg(`§c[Error] Failed to play custom sound: ${e}`);
+        modMsg(`§c[Error] Failed to play sound: ${e}`);
     }
 }).setFilteredClass(S44PacketWorldBorder);

@@ -22,4 +22,3 @@ export const STRIKETHROUGH = '&m';
 export const UNDERLINE = '&n';
 export const ITALIC = '&o';
 export const RESET = '&r';
-// joininstance shortcuts

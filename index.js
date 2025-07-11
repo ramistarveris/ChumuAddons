@@ -1,44 +1,14 @@
 import config from "./config";
 import chatCommandsConfig from "./features/ChatCommands/config";
 
-try {
-    require("./debug");
-} catch(e) {}
-
-// ChatCommands
 import "./features/ChatCommands/config";
-
-// General
-import "./features/General/autopetDisplay";
-// General - Overlays
-import "./features/General/legionCounter";
-import "./features/General/speedOverlay";
-
-// Dungeons
-import "./features/Dungeons/cryptReminder";
-import "./features/Dungeons/leapAnnouce";
-import "./features/Dungeons/mimic";
-import "./features/Dungeons/batDead";
-import "./features/Dungeons/shadowAssassin";
-import "./features/Dungeons/immunityCooldown";
-import "./features/Dungeons/starredMob";
-import "./features/Dungeons/key";
-import "./features/Dungeons/dungeonRequeue";
-// Dungeon - Overlays
-import "./features/Dungeons/fireFreezeNotifier";
-
-// F7
-import "./features/Dungeons/F7/terminalLabel";
-import "./features/Dungeons/F7/witherBox";
-
-// Mining
-
-// Misc 
-import "./features/Misc/shattapWatcher";
-// import "./features/Misc/worldAge";
-
-// Notification 
-import "./features/Notification/partyFinderNotifier";
+import "./features/General/\.generalIndex.js";
+import "./features/Dungeons/\.dungeonIndex.js";
+import "./features/Dungeons/F7/\.f7Index.js";
+import "./features/Mining/\.miningIndex.js";
+import "./features/Misc/\.miscIndex.js";
+import "./features/Notification/\.notifierIndex.js";
+import "./features/Slayer/\.slayerIndex.js";
 
 // Need to load once
 import "./utils/Utils";
