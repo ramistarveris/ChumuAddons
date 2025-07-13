@@ -19,5 +19,5 @@ export function message_help() {
 }
 
 export function message_chumu() {
-    partyMsg("ChumuAddons!")
+    partyMsg("ChumuAddons! ➽ https://discord.gg/XB7x4pTknM")
 }

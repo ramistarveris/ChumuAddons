@@ -9,7 +9,7 @@ register("packetReceived", (packet, event) => {
     if (packet.func_179841_c() === 2) return;
 
     const message = ChatLib.removeFormatting(packet.func_148915_c().func_150260_c());
-    modMsg(message);
+
     if (
         message.includes("has invited you to join") &&
         message.includes("You have 60 seconds to accept") &&
