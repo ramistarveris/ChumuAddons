@@ -1,7 +1,6 @@
 import config from "./config";
 import chatCommandsConfig from "./features/ChatCommands/config";
 
-import "./debug.js"
 import "./features/ChatCommands/config";
 import "./features/General/\.generalIndex.js";
 import "./features/Dungeons/\.dungeonIndex.js";
