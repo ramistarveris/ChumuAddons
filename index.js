@@ -1,6 +1,7 @@
 import config from "./config";
 import chatCommandsConfig from "./features/ChatCommands/config";
 
+import "./debug.js"
 import "./features/ChatCommands/config";
 import "./features/General/\.generalIndex.js";
 import "./features/Dungeons/\.dungeonIndex.js";
@@ -45,7 +46,7 @@ register("command", (...args) => {
 
         case "gui":
         case "hud":
-            ChatLib.chat("camovegui");
+            ChatLib.command("camovegui", true);
             break;
 
         default:
@@ -53,3 +54,4 @@ register("command", (...args) => {
             break;
     }
 }).setName("ca").setAliases(["chumuaddons", "chumu"]);
+

@@ -407,6 +407,22 @@ class Config {
     colorWitherBox = Color.RED;
 
     // ========== Mining ==========
+    @SwitchProperty({
+        name: "Compact Overlay",
+        description: "Display the number of compact blocks in the held item.",
+        category: "Mining",
+        subcategory: "Compact Overlay"
+    })
+    compactOverlay = false;
+    
+    // > Mining/Flowstate Overlay
+    @SwitchProperty({
+        name: "Flowstate Overlay",
+        description: "Display number of Mining Fortunes obtained by Flowstate Enchante, updated in real time.",
+        category: "Mining",
+        subcategory: "Flowstate Overlay"
+    })
+    flowstateOverlay = false;
 
     // ========== Misc ==========
 
