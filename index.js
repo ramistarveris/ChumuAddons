@@ -10,7 +10,6 @@ import "./features/Misc/\.miscIndex.js";
 import "./features/Notification/\.notifierIndex.js";
 import "./features/Slayer/\.slayerIndex.js";
 
-// Need to load once
 import "./utils/Utils";
 import "./utils/Overlays";
 
@@ -53,4 +52,3 @@ register("command", (...args) => {
             break;
     }
 }).setName("ca").setAliases(["chumuaddons", "chumu"]);
-

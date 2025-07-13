@@ -10,6 +10,7 @@ const WorldBorder = Java.type("net.minecraft.world.border.WorldBorder");
 
 register("packetReceived", (packet, event) => {
     if (!Dungeon.inDungeon || getFloor() === "F1") return;
+    if (!config.saJumping) return;
 
     const worldborder = new WorldBorder();
     packet.func_179788_a(worldborder);
